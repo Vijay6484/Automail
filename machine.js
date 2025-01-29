@@ -116,16 +116,12 @@ async function sendEmails() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          to: person.email,
-          subject: emailConfig.subject,
-          body: emailBody,
-          smtp: {
-            host: emailConfig.smtpDomain,
-            port: emailConfig.smtpPort,
-            user: credentials.email,
-            pass: credentials.password
-          }
-        })
+          smtp_server: emailConfig.smtpDomain,
+          smtp_port: emailConfig.smtpPort,
+          sender_email: credentials.email,
+          sender_password: credentials.password,
+          sendees: [{ name: person.name, email: person.email }]
+          })
       });
 
       if (!response.ok) {
