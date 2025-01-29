@@ -1,9 +1,3 @@
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  document.getElementById('loginPage').classList.remove('active');
-  document.getElementById('emailPage').classList.add('active');
-});
-
 document.getElementById('emailForm').addEventListener('submit', function(e) {
   e.preventDefault();
   

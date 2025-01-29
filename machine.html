@@ -3,93 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Email Automation</title>
+  <title>Email Automation - Configuration</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="emailPage" class="page">
-        <div class="container wide">
-          <div class="card">
-            <div class="header">
-              <h1>Email Configuration</h1>
-              <p>Configure and send bulk emails</p>
-            </div>
-            <form id="emailForm">
-              <div class="grid">
-                <div class="form-group">
-                  <label>
-                    <div class="label-icon">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="M22 7H2"/><path d="M7 12h10"/></svg>
-                      <span>SMTP Domain</span>
-                    </div>
-                    <input type="text" required placeholder="smtp.example.com">
-                  </label>
-                </div>
-                <div class="form-group">
-                  <label>
-                    <div class="label-icon">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="M22 7H2"/><path d="M7 12h10"/></svg>
-                      <span>SMTP Port</span>
-                    </div>
-                    <input type="number" required placeholder="587">
-                  </label>
-                </div>
+  <div class="container wide">
+    <div class="card">
+      <div class="header">
+        <h1>Email Configuration</h1>
+        <p>Configure and send bulk emails</p>
+      </div>
+      <form id="emailForm">
+        <div class="grid">
+          <div class="form-group">
+            <label>
+              <div class="label-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="M22 7H2"/><path d="M7 12h10"/></svg>
+                <span>SMTP Domain</span>
               </div>
-              <div class="form-group">
-                <label>
-                  <div class="label-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    <span>Subject</span>
-                  </div>
-                  <input type="text" required>
-                </label>
+              <input type="text" required placeholder="smtp.example.com">
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <div class="label-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="M22 7H2"/><path d="M7 12h10"/></svg>
+                <span>SMTP Port</span>
               </div>
-              <div class="form-group">
-                <label>
-                  <div class="label-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    <span>Email Body</span>
-                  </div>
-                  <textarea required rows="4"></textarea>
-                </label>
-              </div>
-              <div class="grid">
-                <div class="form-group">
-                  <label>
-                    <div class="label-icon">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
-                      <span>Attachment</span>
-                    </div>
-                    <input type="file">
-                  </label>
-                </div>
-                <div class="form-group">
-                  <label>
-                    <div class="label-icon">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
-                      <span>CSV File with Emails</span>
-                    </div>
-                    <input type="file" required accept=".csv">
-                  </label>
-                </div>
-              </div>
-              <button type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-                Send Emails
-              </button>
-            </form>
+              <input type="number" required placeholder="587">
+            </label>
           </div>
         </div>
-      </div>
-    
-      <div id="logsDialog" class="dialog">
-        <div class="dialog-content">
-          <h2>Email Sending Results</h2>
-          <div id="logsList" class="logs-list"></div>
-          <button onclick="closeDialog()">Close</button>
+        <div class="form-group">
+          <label>
+            <div class="label-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Subject</span>
+            </div>
+            <input type="text" required>
+          </label>
         </div>
-      </div>
-    
-      <script src="script.js"></script>
-    </body>
+        <div class="form-group">
+          <label>
+            <div class="label-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Email Body</span>
+            </div>
+            <textarea required rows="4"></textarea>
+          </label>
+        </div>
+        <div class="grid">
+          <div class="form-group">
+            <label>
+              <div class="label-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                <span>Attachment</span>
+              </div>
+              <input type="file">
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <div class="label-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                <span>CSV File with Emails</span>
+              </div>
+              <input type="file" required accept=".csv">
+            </label>
+          </div>
+        </div>
+        <button type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          Send Emails
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="logsDialog" class="dialog">
+    <div class="dialog-content">
+      <h2>Email Sending Results</h2>
+      <div id="logsList" class="logs-list"></div>
+      <button onclick="closeDialog()">Close</button>
+    </div>
+  </div>
+
+  <script src="machine.js"></script>
+</body>
 </html>
