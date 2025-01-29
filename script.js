@@ -1,9 +1,21 @@
+// Handle login form submission
 document.getElementById('loginForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  document.getElementById('loginPage').classList.remove('active');
-  document.getElementById('emailPage').classList.add('active');
+  
+  // Validate form fields (you can also improve validation logic here)
+  const name = document.querySelector('input[type="text"]').value;
+  const email = document.querySelector('input[type="email"]').value;
+  
+  if (name && email) {
+    // Hide login page and show email page
+    document.getElementById('loginPage').classList.remove('active'); // Hide login page
+    document.getElementById('emailPage').classList.add('active');   // Show email page
+  } else {
+    alert("Please fill in all fields.");
+  }
 });
 
+// Handle email form submission
 document.getElementById('emailForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
@@ -16,6 +28,7 @@ document.getElementById('emailForm').addEventListener('submit', function(e) {
   showLogs(sampleLogs);
 });
 
+// Function to display logs
 function showLogs(logs) {
   const logsList = document.getElementById('logsList');
   logsList.innerHTML = '';
@@ -38,6 +51,7 @@ function showLogs(logs) {
   document.getElementById('logsDialog').classList.add('active');
 }
 
+// Function to close the log dialog
 function closeDialog() {
   document.getElementById('logsDialog').classList.remove('active');
 }
