@@ -1,37 +1,42 @@
 // Handle login form submission
 document.getElementById('loginForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  window.location.href = "/machine";
   
-  // Validate form fields (you can also improve validation logic here)
+  // Validate form fields
   const name = document.querySelector('input[type="text"]').value;
   const email = document.querySelector('input[type="email"]').value;
   
   if (name && email) {
-    // Hide login page and show email page
-    document.getElementById('loginPage').classList.remove('active'); // Hide login page
-    document.getElementById('emailPage').classList.add('active');   // Show email page
+    // Redirect to the new page
+    window.location.href = "/machine.html";
   } else {
     alert("Please fill in all fields.");
   }
 });
 
-// Handle email form submission
-document.getElementById('emailForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  // Simulate email sending
-  const sampleLogs = [
-    { email: 'test1@example.com', status: 'success', message: 'Email sent successfully' },
-    { email: 'test2@example.com', status: 'error', message: 'Failed to send email' }
-  ];
-  
-  showLogs(sampleLogs);
+// Handle email form submission (only runs on machine.html)
+document.addEventListener("DOMContentLoaded", function () {
+  const emailForm = document.getElementById('emailForm');
+  if (emailForm) {
+    emailForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Simulate email sending
+      const sampleLogs = [
+        { email: 'test1@example.com', status: 'success', message: 'Email sent successfully' },
+        { email: 'test2@example.com', status: 'error', message: 'Failed to send email' }
+      ];
+      
+      showLogs(sampleLogs);
+    });
+  }
 });
 
 // Function to display logs
 function showLogs(logs) {
   const logsList = document.getElementById('logsList');
+  if (!logsList) return;
+
   logsList.innerHTML = '';
   
   logs.forEach(log => {
@@ -54,5 +59,6 @@ function showLogs(logs) {
 
 // Function to close the log dialog
 function closeDialog() {
-  document.getElementById('logsDialog').classList.remove('active');
+  const logsDialog = document.getElementById('logsDialog');
+  if (logsDialog) logsDialog.classList.remove('active');
 }
