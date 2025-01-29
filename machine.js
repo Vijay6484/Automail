@@ -110,7 +110,7 @@ async function sendEmails() {
         `P.S. Bring another founder friend and get access to our exclusive resources library!`;
 
       // Make API call to send email
-      const response = await fetch('/api/send-email', {
+      const response = await fetch('https://automailer-flask.onrender.com/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
