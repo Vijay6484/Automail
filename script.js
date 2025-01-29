@@ -1,6 +1,7 @@
 // Handle login form submission
 document.getElementById('loginForm').addEventListener('submit', function(e) {
   e.preventDefault();
+  window.location.href = "/machine";
   
   // Validate form fields (you can also improve validation logic here)
   const name = document.querySelector('input[type="text"]').value;
