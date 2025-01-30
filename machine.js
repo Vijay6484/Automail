@@ -119,7 +119,20 @@ async function sendEmails() {
         smtp_port: emailConfig.smtpPort,
         sender_email: credentials.email,
         sender_password: credentials.password,
-        sendees: emailList // Send the entire email list directly
+        sendees: [
+    {
+      "name": "Vijay",
+      "email": "v99919699@gmail.com"
+    },
+    {
+      "name": "Chandan",
+      "email": "chandandpu@gmail.com"
+    },
+    {
+      "name": "Ramesh",
+      "email": "rt75547@gmail.com"
+    }
+  ] // Send the entire email list directly
       })
     });
 
