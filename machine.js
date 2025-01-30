@@ -5,7 +5,7 @@ const credentials = JSON.parse(sessionStorage.getItem('credentials') || '{}');
 let emailConfig = {
   smtpDomain: '',
   smtpPort: '',
-  subject: 'Ready to Build Your Dream Network? Join Us on 1st Feb!',
+  subject: '',
   body: '',
   attachment: null
 };
@@ -64,7 +64,7 @@ document.getElementById('emailForm').addEventListener('submit', async function(e
   emailConfig = {
     smtpDomain: formData.get('smtpDomain'),
     smtpPort: formData.get('smtpPort'),
-    subject: 'Ready to Build Your Dream Network? Join Us on 1st Feb!',
+    subject: formData.get('subject'),
     body: formData.get('body'),
     attachment: document.querySelector('input[type="file"]:not([accept=".csv"])').files[0]
   };
@@ -81,73 +81,59 @@ document.getElementById('emailForm').addEventListener('submit', async function(e
 
 // Send emails - matching Python implementation
 async function sendEmails() {
-  const results = [];
-  
-  for (const person of emailList) {
-    try {
-      const emailBody = `Dear ${person.name},\n\n` +
-        `Building a successful startup is challenging—but you don't have to do it alone.\n\n` +
-        `I'm personally inviting you to join Primewise Founders Club's exclusive networking session where founders connect with other like-minded entrepreneurs who've walked or are walking the path you're on.\n\n` +
-        `📅 Date: February 1st, 2025\n` +
-        `⏰ Time: 12:00 PM - 1:30 PM (IST)\n` +
-        `📍 Format: Online/Hybrid\n\n` +
-        `What's in it for you:\n` +
-        `\t- Premium Networking Sessions: Bi-monthly networking sessions with seasoned entrepreneurs in different fields.\n` +
-        `\t- Strategic Partnerships: Collaborate with fellow founders on new ventures.\n` +
-        `\t- Scaling Discussions: Exchange ideas on growth and market expansion.\n` +
-        `\t- Investment Opportunities: Be the first to discover promising startups.\n` +
-        `\t- A Supportive Community: Celebrate wins and overcome challenges together.\n\n` +
-        `Expand your influence while contributing to the startup ecosystem. Be part of a tribe of ambitious founders making their mark.\n\n` +
-        `Early Bird Bonus:\n` +
-        `5 Early Birds will get a chance to win premium membership to the Founders Club and exclusive access to our Founders' WhatsApp community.\n\n` +
-        `Limited to 20 participants to ensure quality interactions.\n` +
-        `👉Reserve your spot now: https://forms.gle/dP1B1ohMcCfMov2P8\n` +
-        `More Info: https://primewiseconsulting.com/founders-club/\n\n` +
-        `Questions? Just reply to this email—I'm here to help!\n\n` +
-        `Best regards,\n` +
-        `Vijay Tiwari\n` +
-        `Primewise Founders' Club\n\n` +
-        `P.S. Bring another founder friend and get access to our exclusive resources library!`;
+  try {
+    const emailBody = `Dear Founder,\n\n` +
+      `Building a successful startup is challenging—but you don't have to do it alone.\n\n` +
+      `I'm personally inviting you to join Primewise Founders Club's exclusive networking session where founders connect with other like-minded entrepreneurs who've walked or are walking the path you're on.\n\n` +
+      `📅 Date: February 1st, 2025\n` +
+      `⏰ Time: 12:00 PM - 1:30 PM (IST)\n` +
+      `📍 Format: Online/Hybrid\n\n` +
+      `What's in it for you:\n` +
+      `\t- Premium Networking Sessions: Bi-monthly networking sessions with seasoned entrepreneurs in different fields.\n` +
+      `\t- Strategic Partnerships: Collaborate with fellow founders on new ventures.\n` +
+      `\t- Scaling Discussions: Exchange ideas on growth and market expansion.\n` +
+      `\t- Investment Opportunities: Be the first to discover promising startups.\n` +
+      `\t- A Supportive Community: Celebrate wins and overcome challenges together.\n\n` +
+      `Expand your influence while contributing to the startup ecosystem. Be part of a tribe of ambitious founders making their mark.\n\n` +
+      `Early Bird Bonus:\n` +
+      `5 Early Birds will get a chance to win premium membership to the Founders Club and exclusive access to our Founders' WhatsApp community.\n\n` +
+      `Limited to 20 participants to ensure quality interactions.\n` +
+      `👉Reserve your spot now: https://forms.gle/dP1B1ohMcCfMov2P8\n` +
+      `More Info: https://primewiseconsulting.com/founders-club/\n\n` +
+      `Questions? Just reply to this email—I'm here to help!\n\n` +
+      `Best regards,\n` +
+      `Vijay Tiwari\n` +
+      `Primewise Founders' Club\n\n` +
+      `P.S. Bring another founder friend and get access to our exclusive resources library!`;
 
-      // Make API call to send email
-      const response = await fetch('https://automailer-flask.onrender.com/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          smtp_server: emailConfig.smtpDomain,
-          smtp_port: emailConfig.smtpPort,
-          sender_email: credentials.email,
-          sender_password: credentials.password,
-          sendees: [{ name: person.name, email: person.email }]
-          })
-      });
+    // Make API call to send email
+    const response = await fetch('https://automailer-flask.onrender.com/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        subject: emailConfig.subject,
+        body:emailConfig.body,
+        smtp_server: emailConfig.smtpDomain,
+        smtp_port: emailConfig.smtpPort,
+        sender_email: credentials.email,
+        sender_password: credentials.password,
+        sendees: emailList // Send the entire email list directly
+      })
+    });
 
-      if (!response.ok) {
-        throw new Error('Failed to send email');
-      }
-
-      results.push({
-        email: person.email,
-        status: 'success',
-        message: `Email sent successfully to ${person.name}`
-      });
-
-      // Wait for 60 seconds between emails (matching Python implementation)
-      await new Promise(resolve => setTimeout(resolve, 60000));
-
-    } catch (error) {
-      results.push({
-        email: person.email,
-        status: 'error',
-        message: error.message || 'Failed to send email'
-      });
+    if (!response.ok) {
+      throw new Error('Failed to send emails');
     }
+
+    return [{ status: 'success', message: 'Emails sent successfully' }];
+
+  } catch (error) {
+    return [{ status: 'error', message: error.message || 'Failed to send emails' }];
   }
-  
-  return results;
 }
+
 
 // Show logs dialog
 function showLogs(logs) {
