@@ -139,7 +139,6 @@ async function sendEmails() {
     if (!response.ok) {
       throw new Error('Failed to send emails');
     }
-
     return [{ status: 'success', message: 'Emails sent successfully' }];
 
   } catch (error) {
