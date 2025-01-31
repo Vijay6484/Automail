@@ -118,7 +118,7 @@ async function sendEmails() {
 //   sender_password: credentials.password,
 //   sendees: emailList
 // }));
-    const response = await fetch('https://automailer-flask.onrender.com/send-email', {
+    const response = await fetch('https://automailer-flask.vercel.app/send-email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
