@@ -61,6 +61,7 @@ document.getElementById('emailForm').addEventListener('submit', async function(e
   
   // Get form data
   const formData = new FormData(e.target);
+  console.log(formData)
   emailConfig = {
     smtpDomain: formData.get('smtpDomain'),
     smtpPort: formData.get('smtpPort'),
