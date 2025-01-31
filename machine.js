@@ -109,28 +109,29 @@ async function sendEmails() {
       `P.S. Bring another founder friend and get access to our exclusive resources library!`;
 
 
-    console.log(JSON.stringify({
-  subject: emailConfig.subject,
-  body: emailConfig.body,
-  smtp_server: emailConfig.smtpDomain,
-  smtp_port: emailConfig.smtpPort,
-  sender_email: credentials.email,
-  sender_password: credentials.password,
-  sendees: emailList
-}));
-    // Make API call to send email
-  //   const response = await fetch('https://automailer-flask.onrender.com/send-email', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       subject: emailConfig.subject,
-  //       body:emailConfig.body,
-  //       smtp_server: emailConfig.smtpDomain,
-  //       smtp_port: emailConfig.smtpPort,
-  //       sender_email: credentials.email,
-  //       sender_password: credentials.password,
+//     console.log(JSON.stringify({
+//   subject: emailConfig.subject,
+//   body: emailConfig.body,
+//   smtp_server: emailConfig.smtpDomain,
+//   smtp_port: emailConfig.smtpPort,
+//   sender_email: credentials.email,
+//   sender_password: credentials.password,
+//   sendees: emailList
+// }));
+    Make API call to send email
+    const response = await fetch('https://automailer-flask.onrender.com/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        subject: emailConfig.subject,
+        body:emailConfig.body,
+        smtp_server: emailConfig.smtpDomain,
+        smtp_port: emailConfig.smtpPort,
+        sender_email: credentials.email,
+        sender_password: credentials.password,
+        sendees: emailList
   //       sendees: [
   //   {
   //     "name": "Vijay",
@@ -145,8 +146,8 @@ async function sendEmails() {
   //     "email": "rt75547@gmail.com"
   //   }
   // ] // Send the entire email list directly
-  //     })
-  //   });
+      })
+    });
 
     if (!response.ok) {
       throw new Error('Failed to send emails');
