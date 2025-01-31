@@ -128,6 +128,7 @@ async function sendEmails() {
         body:emailConfig.body,
         smtp_server: emailConfig.smtpDomain,
         smtp_port: emailConfig.smtpPort,
+        sender_name: credentials.name,
         sender_email: credentials.email,
         sender_password: credentials.password,
         sendees: emailList
