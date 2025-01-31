@@ -118,7 +118,6 @@ async function sendEmails() {
 //   sender_password: credentials.password,
 //   sendees: emailList
 // }));
-    Make API call to send email
     const response = await fetch('https://automailer-flask.onrender.com/send-email', {
       method: 'POST',
       headers: {
