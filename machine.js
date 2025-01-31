@@ -77,8 +77,8 @@ document.getElementById('emailForm').addEventListener('submit', async function(e
 
   // Process emails
   console.log(emailConfig)
-  // const results = await sendEmails();
-  // showLogs(results);
+  const results = await sendEmails();
+  showLogs(results);
 });
 
 // Send emails - matching Python implementation
